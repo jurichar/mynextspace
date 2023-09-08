@@ -7,7 +7,7 @@ export default function NavMenu() {
     <nav className={styles.nav}>
       <Link href={"/"}>
         <Image
-          src="/logo.png" // Route of the image file
+          src="/next.svg" // Route of the image file
           width={216}
           height={30}
           alt="NextSpace Logo"
