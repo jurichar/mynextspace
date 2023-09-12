@@ -6,7 +6,8 @@ export default async function Home() {
   const session = await getServerSession();
 
   if (!session) {
-    redirect("/api/auth/signin");
+    redirect("/api/auth/signin"); // redirection to signin page if not logged in
+    // return <></>; // or return a page or something else
   }
 
   return <main></main>;
