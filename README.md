@@ -32,3 +32,39 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## tools used
+
+- [Next.js 13](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Neon database](https://neon.tech/)
+- [Prisma](https://www.prisma.io/)
+- [NextAuth.js](https://next-auth.js.org/)
+- [Vercel](https://vercel.com/)
+
+## Steps
+
+### database serverless
+
+go to : <https://neon.tech/>
+create new project
+create new database with the name you want.
+create new database with the name 'shadow'.
+add the database url to the .env file.
+
+### prisma
+
+npx prisma init // create the prisma folder
+allow migration to the database at the file : prisma/schema.prisma
+add shadow database to the file : prisma/schema.prisma
+npx prisma migrate dev // create the migration
+
+/lib/prisma.ts // create the prisma client
+export const prisma = new PrismaClient()
+that allow to use prisma in the app
+like : prisma.user.findMany()
+
+### Db_auth
+
+npm i @next-auth/prisma-adapter
+add adapter to the file : pages/api/auth/[...nextauth].ts
