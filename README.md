@@ -68,3 +68,5 @@ like : prisma.user.findMany()
 
 npm i @next-auth/prisma-adapter
 add adapter to the file : pages/api/auth/[...nextauth].ts
+add the secret to the .env file
+add the database url and the shadow url to the .env file
