@@ -4,6 +4,7 @@ const nextConfig = {
     appDir: true,
   },
   images: {
+    domains: ["picsum.photos"],
     remotePatterns: [
       {
         protocol: "https",

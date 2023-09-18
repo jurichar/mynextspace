@@ -11,7 +11,7 @@ async function main() {
     const email = faker.internet.email();
     const image = `https://picsum.photos/200?random=${i}`;
 
-    await prisma.user.create({
+    const user = await prisma.user.create({
       data: {
         name,
         bio,
@@ -20,9 +20,31 @@ async function main() {
         image,
       },
     });
+
+    for (let j = 0; j < faker.number.int({ min: 1, max: 5 }); j++) {
+      const title = faker.lorem.sentence();
+      const content = faker.lorem.paragraphs();
+      const published = faker.datatype.boolean();
+
+      await prisma.blogPost.create({
+        data: {
+          title,
+          content,
+          published,
+          authorId: user.id,
+        },
+      });
+    }
   }
 
   console.log("Fake data generated");
 }
 
-main();
+main()
+  .catch((e) => {
+    console.error(e);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });
