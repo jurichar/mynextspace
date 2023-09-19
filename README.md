@@ -1,4 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next 13](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## Presentation
+
+This is a project to learn Next.js as fullstack framework.
+
+The goal is to create a clone of myspace.com.
+
+And to learn how to use Next.js with serverless database and without back-end framework.
+
+## Screenshots
+
+![screenshot](./public/screenshot.gif)
+
+## Features
+
+- Fully serverless with [Neon database](https://neon.tech/).
+- Authentication with [NextAuth.js](https://next-auth.js.org/).
+- Database with [Prisma](https://www.prisma.io/).
+- Deployed on [Vercel](https://vercel.com/).
 
 ## Getting Started
 
