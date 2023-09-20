@@ -19,8 +19,8 @@ export function SignInButton() {
         <Link href={`/dashboard`}>
           <Image
             src={session.user?.image ?? "./meme.jpg"}
-            width={32}
-            height={32}
+            width={40}
+            height={40}
             alt="Your Name"
           />
         </Link>

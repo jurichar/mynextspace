@@ -1,23 +1,41 @@
+
 .card {
-    background-color: #f1f1f1;
+    background-color: var(--white);
     padding: 0;
     width: 150px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    text-decoration: none;
 }
 
-.card h3 {
-    margin-top: 0;
-    margin-bottom: 16px;
-    color: var(--link-color);
-    font-weight: bold;
-}
-
-.cardImage {
-    width: 150px;
-    height: 120px;
+.imageUser {
+    width: 100%;
+    aspect-ratio: 1/1;
     object-fit: cover;
     margin-bottom: 0.5rem;
 }
 
+.card h3 , .card p {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: var(--black);
+    text-align: left;
+    text-decoration: none;
+}
+
+.card:hover {
+    background-color: var(--white);
+    opacity: 0.8;
+}
+
+.card a {
+    text-decoration: none;
+    color: var(--black);
+}
+
 .cardContent {
-    padding: 0 0.5rem;
+    text-decoration: none;
+    padding: 0.5rem;
 }

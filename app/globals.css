@@ -1,5 +1,21 @@
-/* * {
-    box-sizing: border-box;
+/* Global */
+:root {
+    --white: rgb(223, 243, 255);
+    --black: rgb(38, 70, 83);
+    --blue: rgb(42, 157, 143);
+    --yellow: rgb(233, 196, 106);
+    --orange: rgb(244, 162, 97);
+    --red: rgb(231, 111, 81);
+}
+
+
+* {
+    padding: 0px;
     margin: 0;
-    padding: 0;
-} */
+    border: none;
+    outline: none;
+}
+
+body {
+    background-color: var(--black);
+}
