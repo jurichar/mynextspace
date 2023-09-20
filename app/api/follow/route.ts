@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { prisma } from "@/lib/prisma";
-import { User } from '@prisma/client';
 import { authOptions } from "../auth/[...nextauth]/route";
 
 export async function POST(req: Request){
@@ -11,7 +10,8 @@ export async function POST(req: Request){
 
     const currentUserId = await prisma.user
     .findUnique({where: {email: currentUserEmail}})
-    .then((user: User | null) => user?.id!);
+    .then((user) => user?.id!);
+
     const record = await prisma.follows.create({
         data: {
             followerId: currentUserId,
