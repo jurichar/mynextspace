@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { prisma } from "@/lib/prisma";
 import { authOptions } from "../auth/[...nextauth]/route";
+import { User } from '@prisma/client';
 
 export async function PUT (req: Request) {
     const session = await getServerSession(authOptions);
@@ -15,7 +16,7 @@ export async function PUT (req: Request) {
             email: currentUserEmail,
         },
         data,
-    });
+    }).then((user: User | null ) => user?.id!)
 
     return NextResponse.json(user);
 }
