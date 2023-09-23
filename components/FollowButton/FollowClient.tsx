@@ -1,20 +1,15 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
+import { useState } from "react";
 
 interface Props {
   targetUserId: string;
   isFollowing: boolean;
 }
 
-export default async function FollowClient({
-  targetUserId,
-  isFollowing,
-}: Props) {
+export default function FollowClient({ targetUserId, isFollowing }: Props) {
   const router = useRouter();
-  const [isPending, startTransition] = useTransition();
   const [isFetching, setIsFetching] = useState(false);
-  const isMutating = isFetching || isPending;
 
   const follow = async () => {
     setIsFetching(true);
@@ -28,19 +23,9 @@ export default async function FollowClient({
     });
 
     setIsFetching(false);
-
-    console.log(res);
-
-    startTransition(() => {
-      // Refresh the current route:
-      // - Makes a new request to the server for the route
-      // - Re-fetches data requests and re-renders Server Components
-      // - Sends the updated React Server Component payload to the client
-      // - The client merges the payload without losing unaffected
-      //   client-side React state or browser state
-      router.refresh();
-    });
+    router.refresh();
   };
+
   const unfollow = async () => {
     setIsFetching(true);
 
@@ -49,14 +34,12 @@ export default async function FollowClient({
     });
 
     setIsFetching(false);
-    startTransition(() => router.refresh());
+    router.refresh();
   };
 
-  if (isFollowing) {
-    return (
-      <button onClick={unfollow}>{!isMutating ? "Unfollow" : "..."}</button>
-    );
-  } else {
-    return <button onClick={follow}>{!isMutating ? "Follow" : "..."}</button>;
-  }
+  return (
+    <button onClick={isFollowing ? unfollow : follow}>
+      {!isFetching ? (isFollowing ? "Unfollow" : "Follow") : "..."}
+    </button>
+  );
 }

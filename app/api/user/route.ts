@@ -18,6 +18,7 @@ export async function PUT (req: Request) {
         },
         data,
     });
+    console.log("🚀 ~ file: route.ts:21 ~ PUT ~ user:", user)
 
     return NextResponse.json(user);
 }

@@ -17,7 +17,7 @@ export default function BlogCard({
   updatedAt,
   author,
 }: Props) {
-  const lastPostFormatedDate = (date: Date) => {
+  const lastPostFormattedDate = (date: Date) => {
     const day = date.getDate().toString();
     const month = date.getMonth().toString();
     const year = date.getFullYear().toString();
@@ -34,7 +34,7 @@ export default function BlogCard({
         <div className={styles.cardContent}>
           <h3>{title}</h3>
           <p>{content?.slice(0, 300)}...</p>
-          <p>{lastPostFormatedDate(updatedAt)}</p>
+          <p>{lastPostFormattedDate(updatedAt)}</p>
           <p>by {author}</p>
         </div>
       </Link>
