@@ -11,16 +11,7 @@ export default async function Blog() {
   return (
     <div className={styles.grid}>
       {posts.map((post: any) => {
-        return (
-          <BlogCard
-            key={post.id}
-            id={post.id}
-            title={post.title}
-            content={post.content}
-            updatedAt={post.updatedAt}
-            author={post.author.name}
-          />
-        );
+        return <BlogCard key={post.id} {...post} author={post.author.name} />;
       })}
     </div>
   );

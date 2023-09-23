@@ -2,6 +2,7 @@ import AuthProvider from "./AuthProvider";
 import "./globals.css";
 import NavMenu from "./NavMenu";
 import { Open_Sans } from "next/font/google";
+import styles from "./layout.module.css";
 
 export const metadata = {
   title: "Create Next App",
@@ -20,7 +21,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={myFont.className}>
           <NavMenu />
-          {children}
+          <div className={styles.container}>{children}</div>
         </body>
       </html>
     </AuthProvider>
