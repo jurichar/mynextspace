@@ -17,14 +17,25 @@ export default function BlogCard({
   updatedAt,
   author,
 }: Props) {
+  const lastPostFormatedDate = (date: Date) => {
+    const day = date.getDate().toString();
+    const month = date.getMonth().toString();
+    const year = date.getFullYear().toString();
+
+    const hour = date.getHours().toString();
+    const minutes = date.getMinutes().toString();
+
+    return `last update at ${hour}:${minutes} ${day}/${month}/${year}`;
+  };
+
   return (
     <div className={styles.card}>
       <Link href={`/blog/${id}`}>
         <div className={styles.cardContent}>
           <h3>{title}</h3>
-          <p>{content}</p>
-          <p>last update: {updatedAt.toString()}</p>
-          <p>author: {author}</p>
+          <p>{content?.slice(0, 300)}...</p>
+          <p>{lastPostFormatedDate(updatedAt)}</p>
+          <p>by {author}</p>
         </div>
       </Link>
     </div>
