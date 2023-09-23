@@ -8,6 +8,12 @@ interface Props {
   };
 }
 
+/**
+ * generateMetadata function
+ * @param params - The params object
+ * @returns
+ */
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const user = await prisma.user.findUnique({
     where: { id: params.id },
@@ -15,6 +21,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return { title: `User profile of ${user?.name}` };
 }
 
+/**
+ * UserProfile function
+ * @param param
+ * @returns
+ */
 export default async function UserProfile({ params }: Props) {
   const user = await prisma.user.findUnique({
     where: { id: params.id },

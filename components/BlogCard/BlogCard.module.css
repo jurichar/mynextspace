@@ -1,0 +1,35 @@
+.card {
+    background-color: var(--white);
+    padding: 0;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.card h3,
+.card p {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: var(--black);
+    text-align: left;
+    text-decoration: none;
+}
+
+.card:hover {
+    background-color: var(--white);
+    opacity: 0.8;
+}
+
+.card a {
+    text-decoration: none;
+    color: var(--black);
+}
+
+.cardContent {
+    text-decoration: none;
+    padding: 0.5rem;
+}
