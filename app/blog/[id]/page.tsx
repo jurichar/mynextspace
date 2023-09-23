@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { Metadata } from "next";
 
+// interface for the Post object
 interface Post {
   id: string;
   title: string;
@@ -17,6 +18,11 @@ interface Props {
   };
 }
 
+/**
+ * generateMetadata function
+ * @param params - The params object
+ * @returns
+ */
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await prisma.blogPost.findUnique({
     where: { id: params.id },
@@ -24,6 +30,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return { title: `Blog Post: ${post?.title}` };
 }
 
+/**
+ * BlogPostPage function
+ * @param param
+ * @returns
+ */
 export default async function BlogPostPage({ params }: Props) {
   const post = await prisma.blogPost.findUnique({
     where: { id: params.id },
