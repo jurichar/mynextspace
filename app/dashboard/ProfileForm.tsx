@@ -24,8 +24,9 @@ export function ProfileForm({ user }: any) {
     await res.json();
   };
 
+  // TODO: Improve form UX
   return (
-    <div>
+    <div className="">
       <h2>Edit Your Profile</h2>
       <form onSubmit={updateUser}>
         <label htmlFor="name">Name</label>

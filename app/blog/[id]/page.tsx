@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { Metadata } from "next";
+import styles from "./page.module.css";
 
 // interface for the Post object
 interface Post {
@@ -18,11 +19,6 @@ interface Props {
   };
 }
 
-/**
- * generateMetadata function
- * @param params - The params object
- * @returns
- */
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await prisma.blogPost.findUnique({
     where: { id: params.id },
@@ -30,11 +26,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return { title: `Blog Post: ${post?.title}` };
 }
 
-/**
- * BlogPostPage function
- * @param param
- * @returns
- */
 export default async function BlogPostPage({ params }: Props) {
   const post = await prisma.blogPost.findUnique({
     where: { id: params.id },
@@ -44,10 +35,16 @@ export default async function BlogPostPage({ params }: Props) {
     return <div>Post not found</div>;
   }
 
+  // TODO: improve css for this page
   return (
-    <div>
-      <h1>{post.title}</h1>
-      <p>{post.content}</p>
+    <div className={styles.blog}>
+      <div className={styles.title}>
+        <h1>{post.title}</h1>
+        <p>By Jean Michel</p>
+      </div>
+      <div className={styles.content}>
+        <p>{post.content}</p>
+      </div>
     </div>
   );
 }
