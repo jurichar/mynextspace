@@ -1,6 +1,10 @@
 "use client";
+import { useRouter } from "next/navigation";
+import styles from "./ProfileForm.module.css";
 
 export function ProfileForm({ user }: any) {
+  const router = useRouter();
+
   const updateUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -22,11 +26,14 @@ export function ProfileForm({ user }: any) {
     });
 
     await res.json();
+
+    if (res.status === 200) {
+      router.push("/");
+    }
   };
 
-  // TODO: Improve form UX
   return (
-    <div className="">
+    <div className={styles.form}>
       <h2>Edit Your Profile</h2>
       <form onSubmit={updateUser}>
         <label htmlFor="name">Name</label>
@@ -42,7 +49,6 @@ export function ProfileForm({ user }: any) {
         <input type="text" name="age" defaultValue={user?.age ?? 0} />
         <label htmlFor="image">Profile Image URL</label>
         <input type="text" name="image" defaultValue={user?.image ?? ""} />
-
         <button type="submit">Save</button>
       </form>
     </div>

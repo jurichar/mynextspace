@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useTransition } from "react";
+import styles from "./FollowClient.module.css";
 
 interface Props {
   targetUserId: string;
@@ -9,7 +10,9 @@ interface Props {
 
 export default function FollowClient({ targetUserId, isFollowing }: Props) {
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
   const [isFetching, setIsFetching] = useState(false);
+  const isMutating = isFetching || isPending;
 
   const follow = async () => {
     setIsFetching(true);
@@ -18,12 +21,17 @@ export default function FollowClient({ targetUserId, isFollowing }: Props) {
       method: "POST",
       body: JSON.stringify({ targetUserId }),
       headers: {
-        "Content-type": "application/json",
+        "Content-Type": "application/json",
       },
     });
 
     setIsFetching(false);
-    router.refresh();
+
+    console.log(res);
+
+    startTransition(() => {
+      router.refresh();
+    });
   };
 
   const unfollow = async () => {
@@ -34,12 +42,20 @@ export default function FollowClient({ targetUserId, isFollowing }: Props) {
     });
 
     setIsFetching(false);
-    router.refresh();
+    startTransition(() => router.refresh());
   };
 
-  return (
-    <button onClick={isFollowing ? unfollow : follow}>
-      {!isFetching ? (isFollowing ? "Unfollow" : "Follow") : "..."}
-    </button>
-  );
+  if (isFollowing) {
+    return (
+      <div className={styles.followButton}>
+        <button onClick={unfollow}>{!isMutating ? "Unfollow" : "..."}</button>
+      </div>
+    );
+  } else {
+    return (
+      <div className={styles.unfollowButton}>
+        <button onClick={follow}>{!isMutating ? "Follow" : "..."}</button>
+      </div>
+    );
+  }
 }

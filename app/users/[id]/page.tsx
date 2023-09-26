@@ -1,6 +1,7 @@
 import FollowButton from "@/components/FollowButton/FollowButton";
 import { prisma } from "@/lib/prisma";
 import { Metadata } from "next";
+import styles from "./page.module.css";
 
 interface Props {
   params: {
@@ -8,11 +9,7 @@ interface Props {
   };
 }
 
-/**
- * generateMetadata function
- * @param params - The params object
- * @returns
- */
+// TODO: improve css for this page
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const user = await prisma.user.findUnique({
@@ -21,28 +18,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return { title: `User profile of ${user?.name}` };
 }
 
-/**
- * UserProfile function
- * @param param
- * @returns
- */
 export default async function UserProfile({ params }: Props) {
   const user = await prisma.user.findUnique({
     where: { id: params.id },
   });
 
-  const { name, bio, image } = user ?? {};
+  const { name, bio, image, age } = user ?? {};
 
   return (
-    <div>
-      <h1>{name}</h1>
-      <img
-        width={300}
-        src={image ?? "/mememan.webp"}
-        alt={`${name}'s profile`}
-      />
-      <h3>Bio</h3>
-      <p>{bio}</p>
+    <div className={styles.user}>
+      <div className={styles.name}>
+        <div>
+          <h1>{name}</h1>
+          <p>age: {age}</p>
+        </div>
+        <img
+          width={300}
+          src={image ?? "/public/mememan.webp"}
+          alt={`${name}'s profile`}
+        />
+      </div>
+      <div className={styles.bio}>
+        <h3>Bio</h3>
+        <p>{bio}</p>
+      </div>
 
       <FollowButton targetUserId={params.id} />
     </div>
