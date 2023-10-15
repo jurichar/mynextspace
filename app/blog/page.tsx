@@ -4,7 +4,6 @@ import styles from "./page.module.css";
 
 export default async function Blog() {
   const posts = await prisma.blogPost.findMany({
-    where: { published: true },
     include: { author: true },
   });
 

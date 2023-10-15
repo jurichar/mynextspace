@@ -51,10 +51,11 @@ export default async function Home() {
   });
 
   const users = followedUsers.map((follow) => follow.following);
+
   return (
     <main className={styles.main}>
       <h1>
-        Hello, <span className={styles.name}>World</span>!
+        Hello, <span className={styles.name}>{user.name}</span>!
       </h1>
       <div>
         <h2>Followed users</h2>
